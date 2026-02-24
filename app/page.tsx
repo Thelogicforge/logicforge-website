@@ -3,7 +3,7 @@
 import React, { useMemo, useRef, useState } from "react";
 import { ArrowRight, ChevronRight, Mail, Shield } from "lucide-react";
 import { motion, useInView, type Transition } from "framer-motion";
-import { cn } from "@/utils/cn"; // Make sure you created utils/cn.ts
+import { cn } from "@/utils/cn";
 
 const ACCENT = "#00A3FF";
 const BG_DARK = "#050505";
@@ -246,12 +246,49 @@ function ServicesSection() {
 function PortfolioSection() {
     const { ref, isInView, variants, transition } = useReveal();
     const items = [
-        { title: "The 'Angry Churn' Metric", subtitle: "Published in Mind the Product (Forthcoming)", description: "Why your most hated users are your most valuable asset. An analysis of counter-intuitive signals that prove product-market fit.", cta: "Read on MTP →", disabled: true, href: "#"},
-        { title: "The RAG Liability", subtitle: "An Independent Analysis by Logic Forge", description: "A technical teardown of why standard RAG architecture is a compliance time bomb for enterprise AI.", cta: "Read The Analysis →", href: "#"},
-        { title: "The Death of the SDR", subtitle: "A Logic Forge Whitepaper", description: "A mathematical proof of the inevitability of replacing human sales development with programmatic outreach.", cta: "Read The Whitepaper →", href: "#"},
-        { title: "The Digital Dollarization of Africa", subtitle: "A Geopolitical Report by Logic Forge", description: "How US-dollar stablecoins are becoming the de-facto currency for commerce in Africa, creating unintentional American soft power.", cta: "Read The Report →", href: "#"},
-        { title: "The WhatsApp State", subtitle: "A Sociological Report from Lagos", description: "Documenting how informal networks on WhatsApp have replaced the functions of a failing state in Nigeria.", cta: "Read The Report →", href: "#"},
-        { title: "The 'Sovereign' Founder", subtitle: "A Manifesto by Logic Forge", description: "The new model for solopreneurs: using AI leverage and psychological framing to build high-margin, zero-employee empires.", cta: "Read The Manifesto →", href: "#" },
+        { 
+          title: "The 'Angry Churn' Metric", 
+          subtitle: "Published in Mind the Product (Forthcoming)", 
+          description: "Why your most hated users are your most valuable asset. An analysis of counter-intuitive signals that prove product-market fit.", 
+          cta: "Read on MTP →", 
+          disabled: true, 
+          href: "#"
+        },
+        { 
+          title: "The RAG Liability", 
+          subtitle: "An Independent Analysis by Logic Forge", 
+          description: "A technical teardown of why standard RAG architecture is a compliance time bomb for enterprise AI.", 
+          cta: "Read The Analysis →", 
+          href: "https://logicforge.substack.com/p/the-rag-liability" 
+        },
+        { 
+          title: "The Death of the SDR", 
+          subtitle: "A Logic Forge Whitepaper", 
+          description: "A mathematical proof of the inevitability of replacing human sales development with programmatic outreach.", 
+          cta: "Read The Whitepaper →", 
+          href: "https://logicforge.substack.com/p/whitepaper-the-death-of-the-sdr" 
+        },
+        { 
+          title: "The Digital Dollarization of Africa", 
+          subtitle: "A Geopolitical Report by Logic Forge", 
+          description: "How US-dollar stablecoins are becoming the de-facto currency for commerce in Africa, creating unintentional American soft power.", 
+          cta: "Read The Report →", 
+          href: "https://logicforge.substack.com/p/how-america-is-winning-the-currency" 
+        },
+        { 
+          title: "The WhatsApp State", 
+          subtitle: "A Sociological Report from Lagos", 
+          description: "Documenting how informal networks on WhatsApp have replaced the functions of a failing state in Nigeria.", 
+          cta: "Read The Report →", 
+          href: "https://logicforge.substack.com/p/the-whatsapp-state" 
+        },
+        { 
+          title: "The 'Sovereign' Founder", 
+          subtitle: "A Manifesto by Logic Forge", 
+          description: "The new model for solopreneurs: using AI leverage and psychological framing to build high-margin, zero-employee empires.", 
+          cta: "Read The Manifesto →", 
+          href: "https://logicforge.substack.com/p/the-sovereign-founder" 
+        },
       ];
   
     return (
