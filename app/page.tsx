@@ -10,7 +10,7 @@ const BG_DARK = "#050505";
 const TEXT_PRIMARY = "#EAEAEA";
 const TEXT_SECONDARY = "#888888";
 
-// --- Helper Components ---
+// --- Helper Components (No Changes) ---
 function Container({
   className,
   children,
@@ -43,7 +43,6 @@ function Section({
   );
 }
 
-// --- Custom Hook for Animations ---
 function useReveal() {
   const ref = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(ref, { once: true, margin: "-15% 0px" });
@@ -67,7 +66,6 @@ function TopNav() {
   const links = [
     { href: "#services", label: "Services" },
     { href: "#portfolio", label: "Portfolio" },
-    { href: "#manifesto", label: "Manifesto" },
     { href: "#about", label: "About" },
   ];
   return (
@@ -150,18 +148,18 @@ function HeroSection() {
               className="mt-6 max-w-2xl mx-auto text-pretty text-base leading-relaxed sm:text-lg"
               style={{ color: TEXT_SECONDARY }}
             >
-              Logic Forge is a strategy firm that builds narrative and systems for founders operating in high-stakes, chaotic markets. We turn complexity into a competitive advantage.
+              Logic Forge is a strategy firm that builds narrative systems for B2B founders operating in high-stakes markets. We manufacture authority that attracts inbound leads and closes enterprise deals.
             </p>
             <div className="mt-8 flex items-center justify-center gap-4">
               <a
-                href="#portfolio"
+                href="#services"
                 className="group relative inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-white transition"
                 style={{
                   backgroundColor: ACCENT,
                   boxShadow: `0 4px 14px ${ACCENT}33`,
                 }}
               >
-                <span className="relative">// See The Work</span>
+                <span className="relative">// View The Armory</span>
                 <ArrowRight className="relative ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
             </div>
@@ -171,46 +169,14 @@ function HeroSection() {
     );
 }
 
-function SocialProofSection() {
-    const { ref, isInView, variants, transition } = useReveal();
-    return (
-      <Section className="border-t border-white/10" style={{ backgroundColor: `rgba(234, 234, 234, 0.03)` }}>
-        <Container>
-          <motion.div
-            ref={ref}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            variants={variants}
-            transition={{ ...transition, delay: 0.2 }}
-          >
-            <p className="mb-6 text-center text-xs font-semibold tracking-widest" style={{ color: TEXT_SECONDARY }}>
-              // EDITORIAL REVIEW & CONTRIBUTIONS
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
-              <div className="flex items-center gap-2">
-                <span className="font-medium" style={{ color: TEXT_PRIMARY }}>[Mind the Product]</span>
-                <span className="text-xs text-white/50" >•</span>
-                <span className="ml-1 text-xs" style={{ color: TEXT_SECONDARY }}>(Forthcoming, March 2026)</span>
-              </div>
-              <div className="h-4 w-px bg-white/10 hidden sm:block" />
-              <div className="font-medium" style={{ color: `${TEXT_SECONDARY}80` }}>[Tier 1 Tech Publication]</div>
-              <div className="h-4 w-px bg-white/10 hidden sm:block" />
-              <div className="font-medium" style={{ color: `${TEXT_SECONDARY}80` }}>[Global Affairs Journal]</div>
-              <div className="h-4 w-px bg-white/10 hidden sm:block" />
-              <div className="font-medium" style={{ color: `${TEXT_SECONDARY}80` }}>[Venture Capital Review]</div>
-            </div>
-          </motion.div>
-        </Container>
-      </Section>
-    );
-}
+// SocialProofSection is removed until the MTP article is live.
 
 function ServicesSection() {
     const { ref, isInView, variants, transition } = useReveal();
     const services = [
-      { title: "The Authority Engine", icon: "⚙️", desc: "We architect and deploy a content system that establishes you as the undisputed thought leader in your niche.", deliverable: "A portfolio of bylined articles in Tier-1 publications and a narrative that attracts inbound leads." },
-      { title: "Narrative Architecture", icon: "🧭", desc: "A 2-week deep dive to diagnose your core value proposition and build a GTM narrative your customers actually understand.", deliverable: "The 'Sovereign's Codex'—a master strategy document defining your mission, enemy, and story." },
-      { title: "Sovereign Advisory", icon: "👑", desc: "Direct access to my brain. I become your fractional Head of Narrative Strategy for critical decisions on product and marketing.", deliverable: "A second brain dedicated to your victory. (Limited to two clients per quarter)." },
+      { title: "The Authority Engine", price: "$5,000", min: "/month", desc: "A monthly ghostwriting retainer to make you an undisputed thought leader. We handle all content, pitching, and strategy.", deliverable: "A portfolio of bylined articles in Tier-1 publications and a narrative that attracts inbound leads." },
+      { title: "The Authority Sprint", price: "$10,000", min: "one-time", desc: "A 30-day intensive to get you published in 3 tier-1 publications. We write, pitch, and place you. Guaranteed.", deliverable: "3 major placements in 30 days. Instant credibility boost." },
+      { title: "The Narrative OS", price: "$20,000", min: "one-time", desc: "A complete narrative system build. We architect your entire positioning, messaging, and content infrastructure.", deliverable: "The 'Sovereign's Codex'—a master strategy document and AI system you can use forever." },
     ];
     return (
       <Section id="services">
@@ -229,11 +195,15 @@ function ServicesSection() {
             </div>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {services.map((s) => (
-                <div key={s.title} className="group rounded-2xl p-6 transition-all duration-300" style={{ border: `1px solid rgba(255, 255, 255, 0.1)`, backgroundColor: `rgba(234, 234, 234, 0.03)` }}>
-                  <div className="text-3xl">{s.icon}</div>
-                  <h3 className="mt-4 text-lg font-semibold" style={{ color: TEXT_PRIMARY }}>{s.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed" style={{ color: TEXT_SECONDARY }}>{s.desc}</p>
-                  <p className="mt-4 text-xs font-medium" style={{ color: TEXT_SECONDARY }}><span style={{ color: `rgba(234, 234, 234, 0.6)` }}>DELIVERABLE:</span> {s.deliverable}</p>
+                <div key={s.title} className="group rounded-2xl p-6 transition-all duration-300 flex flex-col" style={{ border: `1px solid rgba(255, 255, 255, 0.1)`, backgroundColor: `rgba(234, 234, 234, 0.03)` }}>
+                  <div className="flex-grow">
+                    <h3 className="text-lg font-semibold" style={{ color: TEXT_PRIMARY }}>{s.title}</h3>
+                    <p className="mt-2 text-3xl font-bold" style={{ color: ACCENT }}>
+                      {s.price}<span className="text-base font-medium text-white/60">{s.min}</span>
+                    </p>
+                    <p className="mt-4 text-sm leading-relaxed" style={{ color: TEXT_SECONDARY }}>{s.desc}</p>
+                  </div>
+                  <p className="mt-4 text-xs font-medium" style={{ color: TEXT_SECONDARY }}><span style={{ color: `rgba(234, 234, 234, 0.6)` }}>KEY DELIVERABLE:</span> {s.deliverable}</p>
                 </div>
               ))}
             </div>
@@ -247,33 +217,11 @@ function PortfolioSection() {
     const { ref, isInView, variants, transition } = useReveal();
     const items = [
         { 
-          title: "The 'Angry Churn' Metric", 
-          subtitle: "Published in Mind the Product (Forthcoming)", 
-          description: "Why your most hated users are your most valuable asset. An analysis of counter-intuitive signals that prove product-market fit.", 
-          cta: "Read on MTP →", 
-          disabled: true, 
-          href: "#"
-        },
-        { 
-          title: "The RAG Liability", 
-          subtitle: "An Independent Analysis by Logic Forge", 
-          description: "A technical teardown of why standard RAG architecture is a compliance time bomb for enterprise AI.", 
-          cta: "Read The Analysis →", 
-          href: "https://logicforge.substack.com/p/the-rag-liability" 
-        },
-        { 
-          title: "The Death of the SDR", 
-          subtitle: "A Logic Forge Whitepaper", 
-          description: "A mathematical proof of the inevitability of replacing human sales development with programmatic outreach.", 
-          cta: "Read The Whitepaper →", 
-          href: "https://logicforge.substack.com/p/whitepaper-the-death-of-the-sdr" 
-        },
-        { 
-          title: "The Digital Dollarization of Africa", 
-          subtitle: "A Geopolitical Report by Logic Forge", 
-          description: "How US-dollar stablecoins are becoming the de-facto currency for commerce in Africa, creating unintentional American soft power.", 
-          cta: "Read The Report →", 
-          href: "https://logicforge.substack.com/p/how-america-is-winning-the-currency" 
+          title: "The 'Sovereign' Founder", 
+          subtitle: "A Manifesto by Logic Forge", 
+          description: "The new model for solopreneurs: using AI leverage and psychological framing to build high-margin, zero-employee empires.", 
+          cta: "Read The Manifesto →", 
+          href: "https://logicforge.substack.com/p/the-sovereign-founder" 
         },
         { 
           title: "The WhatsApp State", 
@@ -283,11 +231,11 @@ function PortfolioSection() {
           href: "https://logicforge.substack.com/p/the-whatsapp-state" 
         },
         { 
-          title: "The 'Sovereign' Founder", 
-          subtitle: "A Manifesto by Logic Forge", 
-          description: "The new model for solopreneurs: using AI leverage and psychological framing to build high-margin, zero-employee empires.", 
-          cta: "Read The Manifesto →", 
-          href: "https://logicforge.substack.com/p/the-sovereign-founder" 
+          title: "The Digital Dollarization of Africa", 
+          subtitle: "A Geopolitical Report by Logic Forge", 
+          description: "How US-dollar stablecoins are becoming the de-facto currency for commerce in Africa, creating unintentional American soft power.", 
+          cta: "Read The Report →", 
+          href: "https://logicforge.substack.com/p/how-america-is-winning-the-currency" 
         },
       ];
   
@@ -296,23 +244,24 @@ function PortfolioSection() {
         <Container>
           <motion.div ref={ref} initial="hidden" animate={isInView ? "visible" : "hidden"} variants={variants} transition={transition}>
             <div className="mb-12 text-center">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl" style={{ color: TEXT_PRIMARY, fontFamily: "'Clash Display', sans-serif" }}>// The Architect's Library: Proof of Work</h2>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl" style={{ color: TEXT_PRIMARY, fontFamily: "'Clash Display', sans-serif" }}>// Selected Independent Analyses</h2>
             </div>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {items.map((item, index) => (
-                <div key={index} className={`flex flex-col rounded-2xl p-6 transition-all duration-300 ${item.disabled ? "opacity-50 cursor-not-allowed" : "hover:scale-[1.02]"}`} style={{ border: `1px solid rgba(255, 255, 255, 0.1)`, backgroundColor: `rgba(5, 5, 5, 0.5)` }}>
+                <div key={index} className="flex flex-col rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02]" style={{ border: `1px solid rgba(255, 255, 255, 0.1)`, backgroundColor: `rgba(5, 5, 5, 0.5)` }}>
                   <div className="flex-grow">
                     <h3 className="text-base font-semibold" style={{ color: TEXT_PRIMARY }}>{item.title}</h3>
                     <p className="mt-2 text-xs font-medium uppercase tracking-wider" style={{ color: TEXT_SECONDARY }}>{item.subtitle}</p>
                     <p className="mt-3 text-sm leading-relaxed" style={{ color: TEXT_SECONDARY }}>{item.description}</p>
                   </div>
-                  <a href={item.href} className={`mt-4 inline-flex items-center gap-1 text-sm font-medium ${item.disabled ? "pointer-events-none" : "group"}`} style={{ color: ACCENT }} target="_blank" rel="noopener noreferrer">
+                  <a href={item.href} className="mt-4 inline-flex items-center gap-1 text-sm font-medium group" style={{ color: ACCENT }} target="_blank" rel="noopener noreferrer">
                     <span>{item.cta}</span>
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </a>
                 </div>
               ))}
             </div>
+            <p className="text-center text-xs mt-8" style={{color: TEXT_SECONDARY}}>Client work is ghostwritten and published under strict NDA.</p>
           </motion.div>
         </Container>
       </Section>
@@ -327,7 +276,7 @@ function ManifestoSection() {
           <motion.div ref={ref} initial="hidden" animate={isInView ? "visible" : "hidden"} variants={variants} transition={transition} className="mx-auto max-w-4xl rounded-2xl p-8 sm:p-12 text-center" style={{ border: `1px solid rgba(255, 255, 255, 0.1)`, backgroundColor: `rgba(5, 5, 5, 0.5)` }}>
             <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl" style={{ color: TEXT_PRIMARY, fontFamily: "'Clash Display', sans-serif" }}>Your Blog is a Graveyard.</h2>
             <p className="mt-6 text-pretty leading-relaxed sm:text-lg" style={{ color: TEXT_SECONDARY }}>
-              You spend $5k a month on listicles that get 100 views. You chase SEO keywords your customers don&apos;t search for. You publish "thought leadership" with zero thoughts. Your content budget is a furnace where you burn cash for warmth. It's noise. It generates zero qualified pipeline. Why? Because you are building content, not authority. Content is a commodity. Authority is a weapon. I don't sell content. I build systems that manufacture authority at scale. If you are tired of running a content graveyard, we should talk.
+              You spend $5k a month on listicles that get 100 views. You chase SEO keywords your customers don&apos;t search for. You publish "thought leadership" with zero thoughts. Your content budget is a furnace where you burn cash for warmth. It generates zero qualified pipeline. Why? Because you are building content, not authority. Content is a commodity. Authority is a weapon. I don't sell content. I build systems that manufacture authority at scale. If you are tired of running a content graveyard, we should talk.
             </p>
           </motion.div>
         </Container>
@@ -342,16 +291,18 @@ function AboutSection() {
         <Container>
           <motion.div ref={ref} initial="hidden" animate={isInView ? "visible" : "hidden"} variants={variants} transition={transition} className="grid gap-10 sm:grid-cols-12 sm:items-center">
             <div className="sm:col-span-4 flex justify-center">
-              <div className="h-[200px] w-[200px] rounded-full border border-white/10 bg-white/5" aria-label="Professional headshot of Alexander Carter" />
+              <div className="flex h-[200px] w-[200px] items-center justify-center rounded-full border-2 bg-gradient-to-br from-[#00A3FF]/10 to-[#050505]" style={{ borderColor: ACCENT }}>
+                <Shield className="h-24 w-24 text-[#00A3FF]" />
+              </div>
             </div>
             <div className="sm:col-span-8">
               <h2 className="text-3xl font-bold tracking-tight" style={{ color: TEXT_PRIMARY, fontFamily: "'Clash Display', sans-serif" }}>Alexander Carter</h2>
               <p className="text-base font-medium mt-1" style={{ color: ACCENT }}>Technology Analyst & Narrative Strategist</p>
               <p className="mt-4 text-sm leading-relaxed sm:text-base" style={{ color: TEXT_SECONDARY }}>
-                Based in Lagos, Nigeria, I analyze the collision between emerging technology and complex markets. My work focuses on how systems—from financial protocols to social hierarchies—are built, broken, and rebuilt by new waves of innovation.
+                I help B2B founders and executives build authority through strategic content and tier-1 publication placements. My work has been featured in publications like Mind the Product (Forthcoming).
               </p>
               <p className="mt-3 text-sm leading-relaxed sm:text-base" style={{ color: TEXT_SECONDARY }}>
-                I don't write "content." I architect narrative frameworks that give founders a competitive edge. My analysis on product strategy is forthcoming in Mind the Product.
+                I don't just write "content." I architect narrative systems that position you as the definitive voice in your category. Based in Lagos, operating globally. All communication is async (email/Slack)—no calls required.
               </p>
             </div>
           </motion.div>
@@ -362,8 +313,7 @@ function AboutSection() {
   
 function ContactSection() {
     const { ref, isInView, variants, transition } = useReveal();
-    const [status, setStatus] = useState<"idle" | "sent">("idle");
-    const budgetOptions = useMemo(() => ["Select...", "<$5k/mo (Advisory Only)", "$5k-10k/mo (Narrative Architecture)", "$10k+/mo (Authority Engine)"], []);
+    const budgetOptions = useMemo(() => ["Select...", "$5k-10k/mo (Authority Engine)", ">$10k one-time (Sprint/OS)"], []);
   
     return (
       <Section id="contact" style={{ backgroundColor: `rgba(234, 234, 234, 0.03)` }}>
@@ -372,19 +322,21 @@ function ContactSection() {
             <div className="mx-auto max-w-2xl text-center">
                 <h2 className="text-3xl font-bold tracking-tight" style={{ color: TEXT_PRIMARY, fontFamily: "'Clash Display', sans-serif" }}>// Initiate Contact</h2>
                 <p className="mt-3 text-base leading-relaxed" style={{ color: TEXT_SECONDARY }}>
-                    If you have a problem of sufficient complexity, describe the constraint. I'll reply with a plan.
+                    If you have a problem of sufficient complexity, describe the constraint. I will reply with a plan if the mission is a fit.
                 </p>
             </div>
             <div className="mx-auto mt-12 max-w-lg">
               <form
+                action="https://formspree.io/f/mwvnzzne" // --- YOUR ID IS NOW INTEGRATED ---
+                method="POST"
                 className="rounded-2xl border border-white/10 bg-white/5 p-6"
-                onSubmit={(e) => { e.preventDefault(); setStatus("sent"); }}
               >
                 <div className="grid gap-4">
-                  <label className="grid gap-1.5"><span className="text-sm font-medium" style={{ color: TEXT_SECONDARY }}>Your Name</span><input required className="h-11 rounded-md border border-white/10 bg-[#0a0a0a]/60 px-3 text-sm text-white outline-none transition focus:border-blue-500"/></label>
-                  <label className="grid gap-1.5"><span className="text-sm font-medium" style={{ color: TEXT_SECONDARY }}>Company URL</span><input required type="url" className="h-11 rounded-md border border-white/10 bg-[#0a0a0a]/60 px-3 text-sm text-white outline-none transition focus:border-blue-500" /></label>
-                  <label className="grid gap-1.5"><span className="text-sm font-medium" style={{ color: TEXT_SECONDARY }}>The Constraint</span><textarea required rows={3} className="rounded-md border border-white/10 bg-[#0a0a0a]/60 px-3 py-2 text-sm text-white outline-none transition focus:border-blue-500" placeholder="In one sentence, what is the single biggest constraint holding back your growth?" /></label>
-                  <label className="grid gap-1.5"><span className="text-sm font-medium" style={{ color: TEXT_SECONDARY }}>Budget</span><select className="h-11 rounded-md border border-white/10 bg-[#0a0a0a]/60 px-3 text-sm text-white outline-none transition focus:border-blue-500">{budgetOptions.map((b) => (<option key={b} value={b}>{b}</option>))}</select></label>
+                  <input type="hidden" name="_subject" value="New LogicForge.io Inquiry" />
+                  <label className="grid gap-1.5"><span className="text-sm font-medium" style={{ color: TEXT_SECONDARY }}>Your Name</span><input name="name" required className="h-11 rounded-md border border-white/10 bg-[#0a0a0a]/60 px-3 text-sm text-white outline-none transition focus:border-blue-500"/></label>
+                  <label className="grid gap-1.5"><span className="text-sm font-medium" style={{ color: TEXT_SECONDARY }}>Your Email</span><input type="email" name="_replyto" required className="h-11 rounded-md border border-white/10 bg-[#0a0a0a]/60 px-3 text-sm text-white outline-none transition focus:border-blue-500" /></label>
+                  <label className="grid gap-1.5"><span className="text-sm font-medium" style={{ color: TEXT_SECONDARY }}>The Constraint</span><textarea name="constraint" required rows={3} className="rounded-md border border-white/10 bg-[#0a0a0a]/60 px-3 py-2 text-sm text-white outline-none transition focus:border-blue-500" placeholder="In one sentence, what is the single biggest constraint holding back your growth?" /></label>
+                  <label className="grid gap-1.5"><span className="text-sm font-medium" style={{ color: TEXT_SECONDARY }}>Budget</span><select name="budget" className="h-11 rounded-md border border-white/10 bg-[#0a0a0a]/60 px-3 text-sm text-white outline-none transition focus:border-blue-500">{budgetOptions.map((b) => (<option key={b} value={b}>{b}</option>))}</select></label>
                 </div>
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <button type="submit" className="group inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-white transition" style={{ backgroundColor: ACCENT }}>
@@ -392,7 +344,7 @@ function ContactSection() {
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </button>
                   <p className="text-xs text-white/50">
-                    {status === "sent" ? "Transmission queued. Acknowledged. I will respond if the mission is a fit." : "Response time: 24–72 hours."}
+                    I will respond within 24-48 hours if it's a fit.
                   </p>
                 </div>
               </form>
@@ -428,7 +380,7 @@ export default function Home() {
         <TopNav />
         <main>
           <HeroSection />
-          <SocialProofSection />
+          {/* SocialProofSection is temporarily disabled */}
           <ServicesSection />
           <PortfolioSection />
           <ManifestoSection />
